@@ -15,11 +15,17 @@ define('ADMIN_EMAIL', 'info@indoxus.com'); // Change to your email
 define('FROM_EMAIL', 'noreply@indoxus.com');
 define('FROM_NAME', 'Indoxus Website');
 
-// CORS Headers (if needed for API calls)
-header('Access-Control-Allow-Origin: *');
+// Security Headers
+header('Content-Type: application/json');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+
+// CORS Headers (restrict to your domain in production)
+header('Access-Control-Allow-Origin: *'); // Change to your domain in production
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json');
 
 // Prevent PHP notices/warnings from being output to the client JSON
 ini_set('display_errors', '0');

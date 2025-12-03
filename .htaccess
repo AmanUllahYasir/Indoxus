@@ -9,7 +9,9 @@
     RewriteBase /
 
     # Force HTTPS - Redirect all HTTP requests to HTTPS
+    # Skip redirect on localhost for development
     RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Force www (optional - uncomment if you want to enforce www)
@@ -81,16 +83,17 @@
     Require all denied
 </FilesMatch>
 
-# Deny access to .git directory
-<DirectoryMatch "\.git">
-    Require all denied
-</DirectoryMatch>
+# Deny access to .git directory and files
+RedirectMatch 404 /\.git
 
 # Deny access to sensitive files
-<FilesMatch "\.(md|sql|json|lock)$">
-    <If "%{REQUEST_URI} !~ m#^/api/#">
-        Require all denied
-    </If>
+<FilesMatch "\.(md|sql|lock)$">
+    Require all denied
+</FilesMatch>
+
+# Deny access to JSON cache files
+<FilesMatch "\.cache$">
+    Require all denied
 </FilesMatch>
 
 # ==========================================

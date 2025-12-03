@@ -187,20 +187,20 @@ button {
 
 .btn-hero {
     display: inline-block;
-    background: var(--white);
+    background: #BAD5E5;
     color: var(--navy-dark);
     padding: 14px 40px;
     font-size: 15px;
     font-weight: 700;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.3s;
     letter-spacing: 0.5px;
 }
 
 .btn-hero:hover {
-    background: var(--light-blue);
+    background: #A8C5D1;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(186, 213, 229, 0.4);
 }
 
 /* ==========================================
@@ -209,7 +209,7 @@ button {
 
 .quote-section {
     background: var(--white);
-    padding: 80px 20px;
+    padding: 50px 20px;
     text-align: center;
 }
 
@@ -490,35 +490,89 @@ button {
 }
 
 /* ==========================================
-   CLIENTS SECTION
+   CLIENTS SECTION - Carousel Animation
    ========================================== */
 
 .clients-section {
     background: var(--white);
-    padding: 80px 0;
+    padding: 50px 0;
+    overflow: hidden;
 }
 
-.clients-row {
+.clients-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.clients-carousel {
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 0;
+}
+
+.clients-track {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 60px;
-    flex-wrap: wrap;
+    gap: 80px;
+    animation: scroll-logos 30s linear infinite;
+    width: fit-content;
+}
+
+/* Pause animation on hover */
+.clients-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-logos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .client-logo-exact {
     height: 50px;
     width: auto;
+    min-width: 120px;
     max-width: 150px;
     object-fit: contain;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: all 0.4s ease;
+    filter: grayscale(0%) brightness(1.05) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    flex-shrink: 0;
+    animation: subtle-glow 3s ease-in-out infinite;
 }
 
 .client-logo-exact:hover {
     opacity: 1;
-    filter: grayscale(0%);
+    filter: grayscale(0%) brightness(1.15) drop-shadow(0 8px 20px rgba(44, 95, 111, 0.4));
+    transform: scale(1.15) translateY(-5px);
+}
+
+@keyframes subtle-glow {
+    0%, 100% {
+        filter: grayscale(0%) brightness(1.05) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    }
+    50% {
+        filter: grayscale(0%) brightness(1.1) drop-shadow(0 6px 12px rgba(44, 95, 111, 0.25));
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .clients-track {
+        gap: 50px;
+        animation: scroll-logos 20s linear infinite;
+    }
+
+    .client-logo-exact {
+        height: 40px;
+        min-width: 100px;
+        max-width: 120px;
+    }
 }
 
 /* ==========================================
@@ -789,39 +843,70 @@ select.form-field option {
         visibility: hidden;
         transition: all 0.3s;
     }
-    
+
     .nav.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
-    
+
     .mobile-menu-toggle {
         display: flex;
     }
-    
+
     .two-column-layout {
         grid-template-columns: 1fr;
     }
-    
+
     .two-column-layout.reverse {
         direction: ltr;
     }
-    
+
+    /* Hide images in Who We Are and Who We Serve sections on mobile phones only */
+    .who-we-are-section .image-column,
+    .who-we-serve-section .image-column {
+        display: none;
+    }
+
+    /* Better text alignment and spacing for Who We Are/Serve on mobile */
+    .content-column {
+        padding: 50px 30px;
+        text-align: center;
+    }
+
+    .content-inner {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .section-heading {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .section-text {
+        font-size: 15px;
+        line-height: 1.7;
+        text-align: center;
+        padding: 0;
+    }
+
     .services-grid-exact {
         grid-template-columns: 1fr;
     }
-    
+
     .category-grid-exact {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-split {
         grid-template-columns: 1fr;
     }
-    
+
+    /* Hide contact background image on mobile phones only */
     .contact-left {
-        min-height: 300px;
+        display: none;
     }
     
     .contact-right {
@@ -849,18 +934,82 @@ select.form-field option {
     .hero-title {
         font-size: 36px;
     }
+
+    /* Better hero section for mobile phones */
+    .hero {
+        min-height: 500px;
+        padding: 80px 20px;
+    }
+
+    .hero-content {
+        padding: 0 10px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 35px;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    .btn-hero {
+        padding: 12px 35px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-title {
         font-size: 28px;
+        line-height: 1.4;
+        margin-bottom: 25px;
     }
-    
+
+    .hero {
+        min-height: 450px;
+        padding: 60px 15px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+        line-height: 1.65;
+        margin-bottom: 30px;
+        text-align: center;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .btn-hero {
+        padding: 12px 30px;
+        font-size: 14px;
+        width: auto;
+    }
+
     .quote-text {
         font-size: 20px;
     }
-    
+
     .container {
         padding: 0 20px;
+    }
+
+    /* Better spacing for Who We Are/Serve on small phones */
+    .content-column {
+        padding: 40px 20px;
+    }
+
+    .content-inner {
+        padding: 0 5px;
+    }
+
+    .section-heading {
+        font-size: 28px;
+        margin-bottom: 18px;
+    }
+
+    .section-text {
+        font-size: 14px;
+        line-height: 1.65;
     }
 }
