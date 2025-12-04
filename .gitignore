@@ -1,0 +1,35 @@
+# Cache files (runtime generated)
+/cache/*.json
+/cache/*.cache
+
+# Local development
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
+
+# Environment files (if you create them later)
+.env
+.env.local
+
+# Database backups
+*.sql.backup
+*.sql.gz
+
+# FTP credentials (never commit!)
+ftp-credentials.txt
+
+# Node modules (if you add npm later)
+node_modules/
+
+# Windows
+desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# PHPStorm
+.idea/

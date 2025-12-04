@@ -4,6 +4,12 @@
  * Simple interface to view contact form submissions
  */
 
+// Session security settings - MUST be before session_start()
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 0); // Set to 1 in production with HTTPS (currently 0 for localhost)
+ini_set('session.cookie_samesite', 'Strict');
+ini_set('session.use_strict_mode', 1);
+
 session_start();
 
 // Regenerate session ID to prevent session fixation
@@ -11,12 +17,6 @@ if (!isset($_SESSION['initiated'])) {
     session_regenerate_id(true);
     $_SESSION['initiated'] = true;
 }
-
-// Session security settings
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 1); // Set to 1 in production with HTTPS
-ini_set('session.cookie_samesite', 'Strict');
-ini_set('session.use_strict_mode', 1);
 
 // Database configuration
 define('DB_HOST', 'localhost');

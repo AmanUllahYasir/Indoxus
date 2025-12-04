@@ -29,6 +29,8 @@
 
 html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -37,6 +39,9 @@ body {
     line-height: 1.6;
     background: #FFFFFF;
     -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 img {
@@ -132,7 +137,10 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1A2332 0%, #2C3E50 100%);
+    background: linear-gradient(135deg, rgba(26, 35, 50, 0.5) 0%, rgba(44, 62, 80, 0.5) 100%), url('../images/heroimage.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
     padding: 100px 20px;
     overflow: hidden;
@@ -324,6 +332,10 @@ button {
     border-radius: 15px;
     text-align: center;
     transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
 }
 
 .service-card-exact:hover {
@@ -378,8 +390,9 @@ button {
     font-size: 14px;
     line-height: 1.6;
     color: var(--text-dark);
-    margin-bottom: 25px;
+    margin-bottom: auto;
     opacity: 0.85;
+    flex-grow: 1;
 }
 
 .dark-blue .service-desc {
@@ -395,6 +408,7 @@ button {
     font-size: 13px;
     font-weight: 600;
     transition: all 0.3s;
+    margin-top: 25px;
 }
 
 .service-btn:hover {
@@ -698,6 +712,9 @@ select.form-field option {
     background: #2F4858;
     padding: 30px 0;
     color: var(--white);
+    margin: 0 0 0 0;
+    border: none;
+    display: block;
 }
 
 .footer-content-exact {

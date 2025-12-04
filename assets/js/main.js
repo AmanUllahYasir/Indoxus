@@ -295,34 +295,6 @@
     }
 
     // ==========================================
-    // SCROLL TO TOP BUTTON
-    // ==========================================
-    function createScrollTopButton() {
-        const scrollTop = document.createElement('button');
-        scrollTop.className = 'scroll-top';
-        scrollTop.innerHTML = '↑';
-        scrollTop.setAttribute('aria-label', 'Scroll to top');
-        document.body.appendChild(scrollTop);
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 500) {
-                scrollTop.classList.add('active');
-            } else {
-                scrollTop.classList.remove('active');
-            }
-        });
-        
-        scrollTop.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-    
-    createScrollTopButton();
-
-    // ==========================================
     // LAZY LOADING IMAGES
     // ==========================================
     if ('IntersectionObserver' in window) {
